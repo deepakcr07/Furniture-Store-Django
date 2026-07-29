@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Order Placed Successfully</h1>
+    <p>Your order number is: <b>{{ order.order_number }}</b></p>
+    <p>Total paid: ₹{{ order.total_amount }}</p>
+    <p>Payment method: {{ order.payment_method }}</p>
+    <p>Status: {{ order.status }}</p>
+
+    <a class="btn" href="/">Go to Home</a>
+    <a class="btn" href="/accounts/" style="margin-left:8px;">My Account</a>
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>My Account</h1>
+    <p>Welcome, {{ request.user.username }}</p>
+
+    <p>
+        <a class="btn" href="{% url 'add_address' %}">Add New Address</a>
+    </p>
+
+    <h2>Saved Addresses</h2>
+    {% if addresses %}
+        {% for address in addresses %}
+            <div style="background:white;padding:15px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.1);margin-bottom:15px;">
+                <p><b>{{ address.full_name }}</b></p>
+                <p>{{ address.phone }}</p>
+                <p>{{ address.address_line }}, {{ address.city }}, {{ address.state }} - {{ address.pincode }}</p>
+                {% if address.landmark %}
+                    <p>Landmark: {{ address.landmark }}</p>
+                {% endif %}
+                {% if address.is_default %}
+                    <p><b>Default Address</b></p>
+                {% else %}
+                    <a class="btn" href="{% url 'set_default_address' address.id %}">Make Default</a>
+                {% endif %}
+                <a class="btn" href="{% url 'delete_address' address.id %}" style="margin-left:8px;">Delete</a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No addresses saved yet.</p>
+    {% endif %}
+
+    <h2>Your Orders</h2>
+    {% if orders %}
+        {% for order in orders %}
+            <div style="background:white;padding:15px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.1);margin-bottom:15px;">
+                <p><b>Order No:</b> {{ order.order_number }}</p>
+                <p><b>Total:</b> ₹{{ order.total_amount }}</p>
+                <p><b>Status:</b> {{ order.status }}</p>
+                <p><b>Payment:</b> {{ order.payment_method }}</p>
+                <p><b>Date:</b> {{ order.created_at }}</p>
+
+                {% for item in order.items.all %}
+                    <p>{{ item.product_name }} x {{ item.quantity }} = ₹{{ item.price }}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No orders yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="card" style="text-align:center;">
+        <h1>Payment Failed</h1>
+        <p>{{ message|default:"Your payment could not be completed." }}</p>
+        <a class="btn" href="{% url 'checkout' %}">Try Again</a>
+    </div>
+</div>
+{% endblock %}

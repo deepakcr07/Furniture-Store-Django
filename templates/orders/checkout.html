@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Checkout</h1>
+
+    {% if error %}
+        <p style="color:red;"><b>{{ error }}</b></p>
+    {% endif %}
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <div class="card">
+            <h2>Delivery Address</h2>
+
+            <form method="post">
+                {% csrf_token %}
+                <p><input type="text" name="full_name" placeholder="Full Name" style="width:100%;padding:10px;"></p>
+                <p><input type="text" name="phone" placeholder="Phone Number" style="width:100%;padding:10px;"></p>
+                <p><textarea name="address_line" placeholder="Address" style="width:100%;padding:10px;"></textarea></p>
+                <p><input type="text" name="city" placeholder="City" style="width:100%;padding:10px;"></p>
+                <p><input type="text" name="state" placeholder="State" style="width:100%;padding:10px;"></p>
+                <p><input type="text" name="pincode" placeholder="Pincode" style="width:100%;padding:10px;"></p>
+
+                <h3>Payment Method</h3>
+                <p>
+                    <label><input type="radio" name="payment_method" value="COD" checked> Cash on Delivery</label><br>
+                    <label><input type="radio" name="payment_method" value="ONLINE"> Online Payment</label>
+                </p>
+
+                <button type="submit" class="btn">Place Order</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>Order Summary</h2>
+
+            {% for item in items %}
+                <p>{{ item.product.name }} × {{ item.quantity }} = ₹{{ item.subtotal }}</p>
+            {% endfor %}
+
+            <hr>
+            <h3>Total: ₹{{ total }}</h3>
+        </div>
+    </div>
+</div>
+{% endblock %}

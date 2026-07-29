@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Complete Payment</h1>
+
+    <div class="card">
+        <p><b>Order Number:</b> {{ order.order_number }}</p>
+        <p><b>Amount:</b> ₹{{ order.total_amount }}</p>
+
+        <form id="razorpay-form" method="post" action="{% url 'payment_verify' %}">
+            {% csrf_token %}
+            <input type="hidden" name="razorpay_order_id" id="razorpay_order_id">
+            <input type="hidden" name="razorpay_payment_id" id="razorpay_payment_id">
+            <input type="hidden" name="razorpay_signature" id="razorpay_signature">
+        </form>
+
+        <button class="btn" id="pay-btn">Pay Now</button>
+    </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    var options = {
+        "key": "{{ razorpay_key_id }}",
+        "amount": "{{ amount }}",
+        "currency": "INR",
+        "name": "Furniture Store",
+        "description": "Furniture Order Payment",
+        "order_id": "{{ razorpay_order_id }}",
+        "handler": function (response) {
+            document.getElementById("razorpay_order_id").value = response.razorpay_order_id;
+            document.getElementById("razorpay_payment_id").value = response.razorpay_payment_id;
+            document.getElementById("razorpay_signature").value = response.razorpay_signature;
+            document.getElementById("razorpay-form").submit();
+        },
+        "theme": {
+            "color": "#6b4f3b"
+        }
+    };
+
+    var rzp1 = new Razorpay(options);
+
+    document.getElementById('pay-btn').onclick = function (e) {
+        rzp1.open();
+        e.preventDefault();
+    };
+</script>
+{% endblock %}

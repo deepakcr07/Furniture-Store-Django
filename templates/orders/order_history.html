@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Order History</h1>
+
+    {% if orders %}
+        {% for order in orders %}
+            <div class="card" style="margin-bottom:16px;">
+                <p><b>Order Number:</b> {{ order.order_number }}</p>
+                <p><b>Amount:</b> ₹{{ order.total_amount }}</p>
+                <p><b>Payment:</b> {{ order.payment_method }} | {{ order.payment_status }}</p>
+                <p><b>Status:</b> {{ order.status }}</p>
+                <p><b>Date:</b> {{ order.created_at }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No orders found.</p>
+    {% endif %}
+</div>
+{% endblock %}

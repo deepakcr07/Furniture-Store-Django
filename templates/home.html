@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="hero">
+    <h1>Furniture Store</h1>
+    <p>Beautiful wooden furniture for your home</p>
+</div>
+
+<div class="container">
+    <h2>Featured Products</h2>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;">
+        {% for product in products %}
+        <div class="card">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width:100%;height:180px;object-fit:cover;border-radius:10px;">
+            <h3>{{ product.name }}</h3>
+            <p>₹{{ product.price }}</p>
+            <a class="btn" href="{% url 'product_detail' product.id %}">View Details</a>
+            <a class="btn" href="{% url 'add_to_cart' product.id %}" style="margin-left:8px;">Add to Cart</a>
+        </div>
+        {% empty %}
+        <p>No featured products yet.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
