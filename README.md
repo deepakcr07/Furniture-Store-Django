@@ -1,4 +1,11 @@
 # 🪑 Furniture Store - Django E-Commerce Website
+![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python)
+![Django](https://img.shields.io/badge/Django-6.0-green?logo=django)
+![SQLite](https://img.shields.io/badge/Database-SQLite-blue)
+![HTML](https://img.shields.io/badge/Frontend-HTML-orange)
+![CSS](https://img.shields.io/badge/CSS-blue)
+![JavaScript](https://img.shields.io/badge/JavaScript-yellow)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 A modern full-stack Furniture Store web application built using **Django**. The application allows users to browse furniture products, view detailed product information, add products to a shopping cart, place orders using Cash on Delivery (COD), and manage products through the Django Admin Panel.
 
