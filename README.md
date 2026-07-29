@@ -88,7 +88,7 @@ This project demonstrates full-stack web development concepts including authenti
 
 ---
 
-# 📂 Project Structure
+## Project Structure
 
 ```
 Furniture_Store/
@@ -98,16 +98,14 @@ Furniture_Store/
 ├── orders/
 ├── pages/
 ├── products/
-│
-├── templates/
 ├── static/
+├── templates/
 ├── media/
 ├── screenshots/
-│
-├── db.sqlite3
 ├── manage.py
 ├── requirements.txt
-└── README.md
+├── README.md
+└── .gitignore
 ```
 
 ---
