@@ -75,7 +75,7 @@ def checkout_view(request):
             if razorpay_client is None:
                 return render(request, 'orders/payment_failed.html', {
                     'order': order,
-                    'message': 'Razorpay is not configured yet. Add your keys in settings.py.'
+                    'message': 'Online payment is currently unavailable. Please choose Cash on Delivery.'
                 })
 
             amount_in_paise = int(total * 100)
