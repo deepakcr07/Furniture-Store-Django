@@ -1,21 +1,112 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-    <h1>Order History</h1>
+
+<div class="container mt-5">
+
+    <h1>📦 My Orders</h1>
+
+<hr>
 
     {% if orders %}
+
         {% for order in orders %}
-            <div class="card" style="margin-bottom:16px;">
-                <p><b>Order Number:</b> {{ order.order_number }}</p>
-                <p><b>Amount:</b> ₹{{ order.total_amount }}</p>
-                <p><b>Payment:</b> {{ order.payment_method }} | {{ order.payment_status }}</p>
-                <p><b>Status:</b> {{ order.status }}</p>
-                <p><b>Date:</b> {{ order.created_at }}</p>
+
+        <div class="card mb-3 shadow-sm">
+
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="col-md-6">
+
+                        <h5>Order #{{ order.order_number }}</h5>
+
+                        <p>
+                            <strong>Date:</strong>
+                            {{ order.created_at|date:"d M Y H:i" }}
+                        </p>
+
+                        <p>
+                            <strong>Total:</strong>
+                            ₹{{ order.total_amount }}
+                        </p>
+
+                    </div>
+
+                    <div class="col-md-6 text-md-end">
+
+                        <p>
+
+                            <strong>Status:</strong>
+
+                            {% if order.status == "Placed" %}
+                                <span class="badge bg-success">{{ order.status }}</span>
+                            {% else %}
+                                <span class="badge bg-secondary">{{ order.status }}</span>
+                            {% endif %}
+
+                        </p>
+
+                        <p>
+
+                            <strong>Payment:</strong>
+
+                            {% if order.payment_status == "PAID" %}
+                                <span class="badge bg-success">
+                                    {{ order.payment_status }}
+                                </span>
+
+                            {% elif order.payment_status == "PENDING" %}
+                                <span class="badge bg-warning text-dark">
+                                    {{ order.payment_status }}
+                                </span>
+
+                            {% else %}
+                                <span class="badge bg-danger">
+                                    {{ order.payment_status }}
+                                </span>
+
+                            {% endif %}
+
+                        </p>
+
+                    </div>
+
+                </div>
+
             </div>
+
+        </div>
+
         {% endfor %}
+
     {% else %}
-        <p>No orders found.</p>
+
+    <div class="alert alert-info">
+
+        You haven't placed any orders yet.
+
+    </div>
+
+    <a href="{% url 'product_list' %}" class="btn btn-primary">
+
+        Continue Shopping
+
+    </a>
+
     {% endif %}
+
+</div>
+<div style="margin-top:30px;">
+
+    <a class="btn" href="{% url 'account' %}">
+        ← Back to My Account
+    </a>
+
+    <a class="btn" href="{% url 'product_list' %}">
+        Continue Shopping
+    </a>
+
 </div>
 {% endblock %}

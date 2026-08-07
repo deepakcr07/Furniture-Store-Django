@@ -1,29 +1,72 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:25px;background:white;padding:20px;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,0.1);">
-        <div>
-            <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width:100%;max-height:450px;object-fit:cover;border-radius:12px;transition:0.3s;">
-            
-            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
-                {% for img in product.images.all %}
-                    <img src="{{ img.image.url }}" alt="{{ product.name }}" style="width:95px;height:75px;object-fit:cover;border-radius:10px;border:2px solid #e0d6cc;transition:0.3s;">
-                {% empty %}
-                    <p>No extra images added yet.</p>
-                {% endfor %}
-            </div>
+
+<div style="display:flex;gap:40px;flex-wrap:wrap;align-items:flex-start;">
+
+    <!-- Left Side -->
+
+    <div style="flex:1;min-width:320px;">
+
+        <img src="{{ product.image.url }}"
+             alt="{{ product.name }}"
+             style="width:100%;max-width:500px;border-radius:12px;">
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:15px;">
+
+            {% for img in product.images.all %}
+
+                <img src="{{ img.image.url }}"
+                     alt="{{ product.name }}"
+                     style="width:90px;height:90px;object-fit:cover;border-radius:10px;">
+
+            {% empty %}
+
+                <p>No additional images available.</p>
+
+            {% endfor %}
+
         </div>
 
-        <div>
-            <h1>{{ product.name }}</h1>
-            <p style="font-size:24px;color:#6b4f3b;"><b>₹{{ product.price }}</b></p>
-            <p><b>Dimensions:</b> {{ product.dimensions }}</p>
-            <p><b>Stock:</b> {{ product.stock }}</p>
-            <p>{{ product.description }}</p>
-
-            <a class="btn" href="{% url 'add_to_cart' product.id %}">Add to Cart</a>
-        </div>
     </div>
+
+    <!-- Right Side -->
+
+    <div style="flex:1;min-width:320px;">
+
+        <h1>{{ product.name }}</h1>
+
+        <h2 style="color:#6b4f3b;">
+            ₹{{ product.price }}
+        </h2>
+
+        <p>
+            <strong>Dimensions:</strong>
+            {{ product.dimensions }}
+        </p>
+
+        <p>
+            <strong>Stock:</strong>
+            {{ product.stock }}
+        </p>
+
+        <p>
+            {{ product.description }}
+        </p>
+
+        <br>
+
+        <a class="btn"
+           href="{% url 'add_to_cart' product.id %}">
+            Add to Cart
+        </a>
+
+    </div>
+
 </div>
+
+</div>
+
 {% endblock %}

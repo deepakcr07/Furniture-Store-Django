@@ -1,18 +1,63 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-    <div class="card" style="text-align:center;">
-        <h1>Order Placed Successfully</h1>
 
-        {% if order %}
-            <p><b>Order Number:</b> {{ order.order_number }}</p>
-            <p><b>Payment Method:</b> {{ order.payment_method }}</p>
-            <p><b>Status:</b> {{ order.status }}</p>
-        {% endif %}
+<div class="container mt-5 text-center">
 
-        <p>Thank you for shopping with Furniture Store.</p>
-        <a class="btn" href="/">Go to Home</a>
-    </div>
+<div class="card shadow p-5">
+
+<h2 class="text-success">
+✅ Order Placed Successfully
+</h2>
+
+<br>
+
+{% if order %}
+
+<h5>
+
+Order Number
+
+<br>
+
+<strong>
+
+{{ order.order_number }}
+
+</strong>
+
+</h5>
+
+<br>
+
+<p>
+
+Thank you for shopping with us.
+
+</p>
+
+<p>
+
+Your order has been placed successfully.
+
+</p>
+
+<a href="{% url 'order_history' %}" class="btn btn-success">
+
+View My Orders
+
+</a>
+
+<a href="{% url 'product_list' %}" class="btn btn-outline-primary">
+
+Continue Shopping
+
+</a>
+
+{% endif %}
+
 </div>
+
+</div>
+
 {% endblock %}

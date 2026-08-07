@@ -1,130 +1,220 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
     <title>Furniture Store</title>
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: #f5f1ea;
-            color: #2b211c;
+
+        body{
+            font-family:Arial,sans-serif;
+            margin:0;
+            background:#f5f1ea;
+            color:#2b211c;
         }
 
-        .topbar {
-            background: #4e342e;
-            color: white;
-            padding: 16px 28px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+        .topbar{
+            background:#4e342e;
+            color:white;
+            padding:16px 28px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            position:sticky;
+            top:0;
+            z-index:1000;
+            box-shadow:0 2px 10px rgba(0,0,0,.18);
         }
 
-        .topbar a {
-            color: white;
-            text-decoration: none;
-            margin-left: 18px;
-            font-weight: bold;
-            transition: 0.25s;
+        .topbar a{
+            color:white;
+            text-decoration:none;
+            margin-left:18px;
+            font-weight:bold;
+            transition:.25s;
         }
 
-        .topbar a:hover {
-            color: #f3d7b6;
+        .topbar a:hover{
+            color:#f3d7b6;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 30px 20px;
+        .container{
+
+            max-width:1100px;
+            margin:auto;
+            padding:30px 20px;
+
         }
 
-        .hero {
-            background: linear-gradient(rgba(70,45,25,0.72), rgba(70,45,25,0.72)),
-                        url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1400&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            padding: 95px 20px;
-            animation: fadeIn 0.8s ease-in-out;
+        .hero{
+            background:
+            linear-gradient(rgba(70,45,25,.72),rgba(70,45,25,.72)),
+            url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1400&q=80');
+
+            background-size:cover;
+            background-position:center;
+            color:white;
+            text-align:center;
+            padding:95px 20px;
         }
 
-        .footer {
-            background: #3e2723;
-            color: white;
-            text-align: center;
-            padding: 18px;
-            margin-top: 40px;
+        .footer{
+            background:#3e2723;
+            color:white;
+            text-align:center;
+            padding:18px;
+            margin-top:40px;
         }
 
-        .btn {
-            display: inline-block;
-            background: #6b4f3b;
-            color: white;
-            padding: 10px 16px;
-            border-radius: 10px;
-            text-decoration: none;
-            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.25s ease;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+        .btn{
+
+            display:inline-block;
+
+            background:#6b4f3b;
+
+            color:white;
+
+            padding:10px 16px;
+
+            border-radius:10px;
+
+            text-decoration:none;
+
+            margin-top:10px;
+
+            margin-right:8px;
+
+            transition:.25s;
+
+        }
+        .card{
+
+        background:white;
+
+        padding:18px;
+
+        border-radius:14px;
+
+        box-shadow:0 2px 10px rgba(0,0,0,.08);
+
+        transition:.25s;
+
+        }
+        .btn:hover{
+
+            background:#5a3f31;
+
+            transform:translateY(-2px);
+
         }
 
-        .btn:hover {
-            background: #5a3f31;
-            transform: translateY(-2px);
+       
+
+        .card:hover{
+
+            transform:translateY(-8px);
+
+            box-shadow:0 10px 30px rgba(0,0,0,.18);
+
+        }
+        img{
+
+            max-width:100%;
+
+            border-radius:10px;
+
+            transition:.3s;
+
         }
 
-        .btn:active {
-            transform: scale(0.96);
+        img:hover{
+
+        transform:scale(1.02);
+
+        }
+        input,
+        textarea,
+        select{
+
+            width:100%;
+
+            padding:12px;
+
+            margin-top:12px;
+
+            margin-bottom:12px;
+
+            border:1px solid #ccc;
+
+            border-radius:8px;
+
+            font-size:15px;
+
+            box-sizing:border-box;
+
         }
 
-        .card {
-            background: white;
-            padding: 15px;
-            border-radius: 14px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        input:focus,
+        textarea:focus{
+
+            outline:none;
+
+            border:1px solid #6b4f3b;
+
         }
 
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.14);
-        }
-
-        img {
-            transition: transform 0.25s ease, opacity 0.25s ease;
-        }
-
-        img:hover {
-            transform: scale(1.02);
-            opacity: 0.98;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
     </style>
+
 </head>
+
 <body>
 
 <div class="topbar">
-    <div><b>Furniture Store</b></div>
+
     <div>
-        <a href="/">Home</a>
-        <a href="/products/">Products</a>
-        <a href="/cart/">Cart</a>
-        <a href="/admin/">Admin</a>
+        <b>🪵 Furniture Store</b>
     </div>
+
+    <div>
+
+        <a href="{% url 'home' %}">Home</a>
+
+        <a href="{% url 'product_list' %}">Products</a>
+
+        <a href="{% url 'view_cart' %}">🛒 Cart</a>
+
+        {% if user.is_authenticated %}
+
+            <a href="{% url 'account' %}">My Account</a>
+
+            <a href="{% url 'order_history' %}">My Orders</a>
+
+            <a href="{% url 'logout' %}">Logout</a>
+
+        {% else %}
+
+            <a href="{% url 'login' %}">Login</a>
+
+            <a href="{% url 'register' %}">Register</a>
+
+        {% endif %}
+
+        {% if user.is_superuser %}
+            <a href="/admin/">Admin</a>
+        {% endif %}
+
+    </div>
+
 </div>
 
-{% block content %}{% endblock %}
+{% block content %}
+{% endblock %}
 
 <div class="footer">
     © 2026 Furniture Store
 </div>
 
 </body>
+
 </html>
