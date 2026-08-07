@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'cart',
     'accounts',
     'orders',
+    'cloudinary_storage',
+    'cloudinary',
     
 ]
 
@@ -139,6 +141,12 @@ STATICFILES_STORAGE = (
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+CLOUDINARY_STORAGE = {
+    'CLOUDINARY_URL': os.getenv("CLOUDINARY_URL"),
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/accounts/'
